@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Card index{% endblock %}
+{% block title %}Cart index{% endblock %}
 
 {% block body %}
-    <h1>Card index</h1>
+    <h1>Cart index</h1>
 
     <table class="table">
         <thead>
@@ -16,15 +16,15 @@
             </tr>
         </thead>
         <tbody>
-        {% for card in cards %}
+        {% for cart in carts %}
             <tr>
-                <td>{{ card.id }}</td>
-                <td>{{ card.createdAt ? card.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ card.total }}</td>
-                <td>{{ card.valid ? 'Yes' : 'No' }}</td>
+                <td>{{ cart.id }}</td>
+                <td>{{ cart.createdAt ? cart.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ cart.total }}</td>
+                <td>{{ cart.valid ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('app_card_show', {'id': card.id}) }}">show</a>
-                    <a href="{{ path('app_card_edit', {'id': card.id}) }}">edit</a>
+                    <a href="{{ path('app_cart_show', {'id': cart.id}) }}">show</a>
+                    <a href="{{ path('app_cart_edit', {'id': cart.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_card_new') }}">Create new</a>
+    <a href="{{ path('app_cart_new') }}">Create new</a>
 {% endblock %}

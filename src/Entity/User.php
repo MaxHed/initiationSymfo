@@ -29,12 +29,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Card::class, orphanRemoval: true)]
-    private Collection $cards;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Cart::class, orphanRemoval: true)]
+    private Collection $carts;
 
     public function __construct()
     {
-        $this->cards = new ArrayCollection();
+        $this->carts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -108,29 +108,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Card>
+     * @return Collection<int, Cart>
      */
-    public function getCards(): Collection
+    public function getCarts(): Collection
     {
-        return $this->cards;
+        return $this->carts;
     }
 
-    public function addCard(Card $card): self
+    public function addCart(Cart $cart): self
     {
-        if (!$this->cards->contains($card)) {
-            $this->cards->add($card);
-            $card->setUser($this);
+        if (!$this->carts->contains($cart)) {
+            $this->carts->add($cart);
+            $cart->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeCard(Card $card): self
+    public function removeCart(Cart $cart): self
     {
-        if ($this->cards->removeElement($card)) {
+        if ($this->carts->removeElement($cart)) {
             // set the owning side to null (unless already changed)
-            if ($card->getUser() === $this) {
-                $card->setUser(null);
+            if ($cart->getUser() === $this) {
+                $cart->setUser(null);
             }
         }
 
